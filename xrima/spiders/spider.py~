@@ -1,0 +1,41 @@
+from scrapy.spider import BaseSpider
+from scrapy.selector import HtmlXPathSelector
+from scrapy.utils.python import unicode_to_str
+
+class Spider1(BaseSpider):
+    name = "tkam"
+    allowed_domains = ["naftemporiki.gr"]
+    start_urls = [
+        "http://www.naftemporiki.gr"
+    ]
+
+    def parse(self, response):
+        #filename = response.url.split("/")[-2]
+        #open(filename, 'wb').write(response.body)
+        #print(response.body)
+        hxs = HtmlXPathSelector(response)
+        sites = hxs.select('//div[@id="CPHome_divBasic"]/div[@class="Box"]/*[name()="h1" or name()="h2"]')
+        for site in sites:
+            title = site.select('a/text()').extract()[0]
+            link = site.select('a/@href').extract()[0]
+            desc = ""#site.select('p/text()').extract()[0]
+            print site, "[",title, link, desc, "]"
+
+class Spider2(BaseSpider):
+    name = "deal"
+    allowed_domains = ["dealnews.gr"]
+    start_urls = [
+        "http://www.dealnews.gr/oikonomia"
+    ]
+
+    def parse(self, response):
+        #print(response.body)
+        hxs = HtmlXPathSelector(response)
+        #sites = hxs.select('//div[@class="catItemView groupPrimary"]')
+        sites = hxs.select('//div[@id="itemListPrimary"]/div[contains(@class,"itemContainer")]')
+        for site in sites:
+            print site
+            title = site.select('.//a/text()').extract()[0]
+            link = site.select('.//a/@href').extract()[0]
+            desc = site.select('.//div[@class="catItemIntroText"]/text()').extract()[0]
+            print site, "[",title, link, desc, "]"

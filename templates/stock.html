@@ -1,0 +1,41 @@
+    <link rel="stylesheet" type="text/css" href="/static/css/hsd.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/finance.css" />
+  <script type="text/javascript">
+  </script>
+
+  <div id="finance">
+    <div id="labels"> 
+      <div id="financeTitle">ASE:{{symbol}}</div> 
+      <div id="time"> 
+  <a onclick="HumbleFinance.zoom(5);">1w</a> 
+  <a onclick="HumbleFinance.zoom(21);">1m</a> 
+  <a onclick="HumbleFinance.zoom(65);">3m</a> 
+  <a onclick="HumbleFinance.zoom(127);">6m</a> 
+  <a onclick="HumbleFinance.zoom(254);">1y</a> 
+  <a onclick="HumbleFinance.zoom(1265);">5y</a> 
+      </div> 
+      <div id="dateRange"></div> 
+    </div> 
+  </div>
+  <script src="/static/js/fi/hsd.js"></script>
+<!--[if IE]>
+<script src="/static/lib/FlashCanvas/bin/flashcanvas.js"></script>
+<![endif]-->
+  <script src="/static/js/fi/envision.min.js"></script>
+  <script src="/static/js/fi/prototype.min.js"></script>
+  <script src="/static/js/fi/Finance.js"></script>
+  <script src="/static/js/fi/excanvas.js"></script>
+  <script src="/static/js/fi/base64.js"></script>
+  <script src="/static/js/fi/canvas2image.js"></script>
+  <script src="/static/js/fi/canvastext.js"></script>
+  <script src="/static/js/fi/flotr.js"></script>
+  <script src="/static/js/fi/HumbleFinance.js"></script>
+  <script src="/static/js/fi/data.js"></script> 
+  <script>
+    var jsonData = {{jsonData}};
+    var priceData = {{priceData}};
+    var volumeData = {{volumeData}};
+    var summaryData = {{summaryData}};
+    var flagData = [[28, 'A']];
+  </script>
+  <script src="/static/js/fi/demo.js"></script>

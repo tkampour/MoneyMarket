@@ -1,0 +1,44 @@
+Google.finance for the greek market.
+------------------------------------
+I started this as a side project since I like spending time in finance sites and checking stock  investments; I was always feeling I could improve a lot of things. Those websites tend to change too ofter back then and I couldnt maintain it myself as a side project.
+
+I experimented with a lot of different technologies I wanted to learn and get experienced on such as python, ElasticSearch and Tornado and web crawlers technologies. 
+At its core I am using a MVC framework with Tornado as the Application Server.
+Stocks are stored in a mySql DB and articles as well as other semi-structured info on ElasticSearch. 
+Memcache is using for faster retrieval. 
+Bootstrap.js is making the site responsive. 
+
+stockserver.py: The main file using Tornado Application server to search for new, display stock prices, articles, lists of stocks, commodities and currencies.
+
+sqlModel.py: Uses sqlAlchemy to create the mysql DB model to hold historic stock prices. 
+
+clustering.py: This is a program I copied to my project to use similar code in the future. It reads articles and cluster them together to identify similar articles. Might be useful reference.
+
+templates/index.html: the main webpage using tornado.template to render various pages.
+
+templates/article.html: page to display individual articles
+
+templates/table.html: In this file I was using the faking js calls www.capital.gr was making to get latest stock and index prices from that site.
+
+xrima/* : Using Scrapy to get news and stock values from various greek websites. 
+
+xrima/pipelines.py: reads articles and adds them to ElasticSearch. Also converts greek titles to greeklish.
+
+xrima/spiders/spider.py: crawlers for finacial news from various websites
+	1) www.naftemporiki.gr 
+	2) dealnews.gr 
+	3) greekmoney.gr 
+	4) euro2day.gr 
+	5) imerisia.gr 
+	6) kerdos.gr 
+	7) capital.gr 
+	8) news.gr 
+	9) kathimerini.gr 
+   10) stock prices from naftemporiki.gr
+
+ crawlers/currgetter.py: program to get currencies and commodities prices. Scheduled to run every one hour through acron job. 
+ 	1) currencies: I am usind feedparser to read an rss feed.
+ 	2) commodities: I couldnt find an rss feed so I experimented with import.io web scraping tool. 
+
+ crawlers/feedgetter.py: customized pyAggr3g470r  (a web based news aggregator) to read news and add them in the SearchEngine (Elastic Search). It worked with the rss feeds of the greek finance news sitesif you were faking the agent but since it was not allowed to use those to aggregate news on your site I decided to write custom crawlers loading the actual web page with Scrapy. 
+

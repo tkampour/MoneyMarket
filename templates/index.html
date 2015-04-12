@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+<meta charset="utf-8">
+
+<body> 
+{% block top %}
+{% include "search.html" %}
+{% end block %}
+
+{% block leftc %}
+<div id="stocklist">
+    <h4>Δημοφιλείς Μετοχές</h4>
+    {% if stocks %}
+    	<table width="100%" class="quotes table table-striped table-condensed" style="font-size:12px"><tbody>
+    	{% for val in stocks %}
+			
+			{% if val['change'].startswith('-') or val['change'].startswith('+')%}
+		  	    {% if val['ticker'] != u'ΜΠΕΛΑ' %}
+			    	{% if val['change'].startswith('-') %}
+			    	    {% set classname = 'text-error' %}
+			    	{% else %}
+			    		{% set classname = 'text-success' %}
+			    	{% end %}
+			    	<tr><td class="symbol text-left" >
+		    		<a title={{val['name']}} class={{classname}} href="#">{{val['ticker']}}</a></td>
+		          	<td class="price {{classname}} text-left" >{{val['value']}}</td>
+		          	<td class="change {{classname}} text-right">{{val['change']}}</td>
+		          	</tr>
+	          	{% end %}
+	        {% end %}
+    	{% end %}
+    	</tbody></table>
+    {% end %}
+</div>
+{% end block %}
+
+{% block ctop %}
+ ELASTIC GRAPH!!
+{% if symbol %}
+  {% include "stock.html" %}
+{% end %}
+{% end block %}
+ {% block cbottom %}
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+			<li class="active">
+			<a href="#tab1" data-toggle="tab">News</a>
+			</li>
+			<li><a href="#tab2" data-toggle="tab">Discussion</a></li>
+			<li><a href="#tab3" data-toggle="tab">...</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="tab1">
+			<p>Elastic News!!</p>
+			</div>
+			<div class="tab-pane" id="tab2">
+			<p>Mongo Forum</p>
+			</div>
+			<div class="tab-pane" id="tab3">
+			<p>Howdy, I'm in Section 3.</p>
+			</div>
+		</div>
+	</div>
+
+{% if news %}  
+  {% for article in news %}
+    <div class="article">
+    <a href="{{article['link']}}"><h6>{{article['title']}}</h6> - {{article["updated"]}}</a>
+    <p>{{article['summary']}}</p>
+    </div>
+  {% end for %}
+{% end if %}
+{% if not news %}
+    Zero NEWS FOUND!!
+  {% end %}
+{% end block %}
+
+{% block rightc %}
+{% if curr %}
+    <div id="currencies">
+      <h4>Ισοτιμίες</h4>
+      <table width="100%" class="quotes table table-striped table-condensed" style="font-size:11px"><tbody><tr>
+	    <td class="symbol"><a href="#">USD/EUR</a>
+	    </td><td class="price">{{curr["USD/EUR"]}}
+	    </td><td class="change"></td></tr><tr>
+	    <td class="symbol"><a href="">GBP/EUR</a>
+	    </td><td class="price">{{curr["GBP/EUR"]}}
+	    </td><td class="change"></td></tr><tr>
+	    <td class="symbol"><a href="#">JPY/EUR</a>
+	    </td><td class="price">{{curr["JPY/EUR"]}}
+	    </td><td class="change"></td></tr><tr>
+	    <td class="symbol"><a href="#">CHF/EUR</a>
+	    </td><td class="price">{{curr["CHF/EUR"]}}
+	    </td><td class="change"></td></tr><tr>
+	    <td class="symbol"><a href="#">RUB/EUR</a>
+	    </td><td class="price">{{curr["RUB/EUR"]}}
+	    </td><td class="change"></td></tr><tr>
+	    <td class="symbol"><a href="#">BGN/EUR</a>
+	    </td><td class="price">{{curr["BGN/EUR"]}}
+	    </td><td class="change">
+      </td></tr></tbody></table>
+    </div>
+    <div id=">commodities">
+      <h4>Εμπορεύματα</h4>
+      <table width="100%" class="quotes table table-striped table-condensed" style="font-size:11px"><tbody>
+	  {% for val in comm %}
+	      {% if val['commodity']=='Oil (Light Crude)' %}
+	          <tr><td class="symbol"><a href="#">Μπρεντ</a>
+	          </td><td class="price text-left">{{val['price']}}$
+	          </td><td class="change text-right">{{val['change']}}</td></tr>
+	      {% end %}
+	      {% if val['commodity']=='Gold' %}
+	          <tr><td class="symbol"><a href="#">Χρυσός</a>
+	          </td><td class="price text-left">{{val['price']}}$
+	          </td><td class="change text-right">{{val['change']}}</td></tr>
+	      {% end %}
+	      {% if val['commodity']=='Silver' %}
+	          <tr><td class="symbol"><a href="#">Ασήμι</a>
+	          </td><td class="price text-left">{{val['price']}}$
+	          </td><td class="change text-right">{{val['change']}}</td></tr>
+	      {% end %}
+	      {% if val['commodity']=='Platinum' %}
+	          <tr><td class="symbol"><a href="#">Πλατίνα</a>
+	          </td><td class="price text-left">{{val['price']}}$
+	          </td><td class="change text-right">{{val['change']}}</td></tr>
+	      {% end %}
+	      {% if val['commodity']=='Copper' %}
+	          <tr><td class="symbol"><a href="#">Χαλκός</a>
+	          </td><td class="price text-left">{{val['price']}}$
+              </td><td class="change text-right">{{val['change']}}</td></tr>
+	      {% end %}
+	  {% end %}
+      </tbody></table>
+    </div>
+{% end %}
+{% end block %}
+
+</body>

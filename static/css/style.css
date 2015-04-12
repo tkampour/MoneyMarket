@@ -1,0 +1,11 @@
+.up {
+	color: #009900;
+}
+
+.down {
+	color: #B50000;
+}
+
+.down > tr > td {
+	color: #B50000;
+}

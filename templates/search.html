@@ -1,0 +1,41 @@
+<script>
+$(document).ready(function() {
+	if(document.createElement("datalist").options) {
+		$("#search").on("input", function(e) {
+			var val = $(this).val();
+			if(val === "") return;
+			if(val.length > 3)  console.log(val);
+
+			$.ajax({url:"/stockList",dataType:"json",success:function(res){
+				var dataList = $("#searchresults");
+				dataList.empty();
+
+				if(res.length) {
+					for(var i=0, len=res.length; i<len; i++) {
+	                                        var legend="<option>"+res[i].label+"</option>"
+						var opt = $(legend).attr("value", res[i].value);
+						$(opt).attr("label", res[i].label);
+						dataList.append(opt);
+					}
+				}
+			},
+			error: function(xhr,z,thrownError){
+				alert(xhr.status);
+				alert(thrownError);
+				alert(xhr.responseText);
+			}
+			});
+		});
+	}				    
+})
+</script>	
+
+<body> 
+<p>
+    <form class="form-search" action="/search" method="POST">
+	<input type="text" name="search" id="search" class="search-query" placeholder="Search Stock" list="searchresults" autocomplete="off">
+	<datalist id="searchresults"></datalist>
+	<input type="submit" class=btn value="Search!"><br>
+	{% raw xsrf_form_html() %}
+        </form>
+</p>

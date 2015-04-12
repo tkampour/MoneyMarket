@@ -1,0 +1,44 @@
+<html>
+    <head>
+    Stock Exhange app
+    <link rel="stylesheet" type="text/css" href="../static/css/css-frames-style.css" />
+    <!--For versions below Internet Explorer 7-->
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" href="css-frames-style-unreal.css" type="text/css">
+    <![endif]-->
+    </head>
+    <body>
+      <div id="rowtop">
+	{% block top %}
+	HELLO SEARCH
+	{% end block %}
+      </div>
+      <div class="columnContainer">
+	<div class="columnsmall">
+	  {% block leftc %}
+          Column 1
+	  {% end block %}
+	</div>
+	<div class="columncenter">
+	  {% block center %}
+          Column 1
+	  {% end block %}
+	  <div class="graph">
+	    {% block ctop %}
+	    GRAPH!!
+	    {% end block %}
+          </div>
+	  <div class="news">
+	    {% block cbottom %}
+	    NEWS!!
+	    {% end block %}
+          </div>
+	</div>
+	<div class="columnsmall">
+	  {% block rightc %}
+          Column 2
+	  {% end block %}
+	</div>
+</div>
+    </body>
+</html>
