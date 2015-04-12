@@ -1,6 +1,6 @@
 Google.finance for the greek market.
 ------------------------------------
-I started this as a side project since I like spending time in finance sites and checking stock  investments; I was always feeling I could improve a lot of things. Those websites tend to change too ofter back then and I couldnt maintain it myself as a side project.
+I started this as a side project since I like spending time in finance sites and checking stock  investments; I was always feeling I could improve a lot of things. Those websites tended to change their structure too ofter back then (2013-2014) and I couldnt maintain it myself as a side project.
 
 I experimented with a lot of different technologies I wanted to learn and get experienced on such as python, ElasticSearch and Tornado and web crawlers technologies. 
 At its core I am using a MVC framework with Tornado as the Application Server.
