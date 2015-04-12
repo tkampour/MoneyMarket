@@ -36,9 +36,12 @@ xrima/spiders/spider.py: crawlers for finacial news from various websites
 	9) kathimerini.gr 
    10) stock prices from naftemporiki.gr
 
+crawlers/crawler.py: adds the historic stock prices in MySQL
+
  crawlers/currgetter.py: program to get currencies and commodities prices. Scheduled to run every one hour through acron job. 
  	1) currencies: I am usind feedparser to read an rss feed.
  	2) commodities: I couldnt find an rss feed so I experimented with import.io web scraping tool. 
 
  crawlers/feedgetter.py: customized pyAggr3g470r  (a web based news aggregator) to read news and add them in the SearchEngine (Elastic Search). It worked with the rss feeds of the greek finance news sitesif you were faking the agent but since it was not allowed to use those to aggregate news on your site I decided to write custom crawlers loading the actual web page with Scrapy. 
 
+/crawlers/data/yahoo/*: script to download all stocks historic data
