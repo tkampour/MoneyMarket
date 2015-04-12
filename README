@@ -18,14 +18,14 @@ templates/index.html: the main webpage using tornado.template to render various 
 
 templates/article.html: page to display individual articles
 
-templates/table.html: In this file I was using the faking js calls www.capital.gr was making to get latest stock and index prices from that site.
+templates/table.html: In this file I was using the faking js calls capital.gr was making to get latest stock and index prices from that site.
 
 xrima/* : Using Scrapy to get news and stock values from various greek websites. 
 
 xrima/pipelines.py: reads articles and adds them to ElasticSearch. Also converts greek titles to greeklish.
 
 xrima/spiders/spider.py: crawlers for finacial news from various websites
-	1) www.naftemporiki.gr 
+	1) naftemporiki.gr 
 	2) dealnews.gr 
 	3) greekmoney.gr 
 	4) euro2day.gr 
